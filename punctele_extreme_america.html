@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Puncte Extreme ale Americilor</title>
+    <title>Quiz Geografic - America</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background-color: #f5f5f5;
@@ -83,10 +83,32 @@
         .quiz-content.active {
             display: block;
         }
+        .map-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .text-answer {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .answer-key {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <h1>Quiz Geografic - Puncte Extreme ale Americilor</h1>
+    <h1>Quiz Geografic - Puncte Extreme și Linii Importante ale Americilor</h1>
     
     <div class="tabs">
         <div class="tab active" onclick="openQuiz('quiz1')">America de Nord și Centrală</div>
@@ -97,33 +119,35 @@
         <div class="quiz-container">
             <h2>Puncte Extreme - America de Nord și Centrală</h2>
             
+            <img src="https://i.ibb.co/7YVK5z1/geography-quiz.png" alt="Harta Americilor" class="map-image" title="Harta cu punctele extreme ale Americilor">
+            
             <div class="question">
-                <p>1. Care este cel mai nordic punct al Americii de Nord?</p>
+                <p>1. Care este distanța aproximativă dintre Capul Morris Jesup (cel mai nordic punct) și Capul Sable (cel mai sudic punct) al Americii de Nord?</p>
                 <div class="options">
-                    <label><input type="radio" name="q1" value="a"> a) Capul Prince of Wales, Alaska</label>
-                    <label><input type="radio" name="q1" value="b"> b) Capul Columbia, Nunavut</label>
-                    <label><input type="radio" name="q1" value="c"> c) Point Barrow, Alaska</label>
-                    <label><input type="radio" name="q1" value="d"> d) Capul Morris Jesup, Groenlanda</label>
+                    <label><input type="radio" name="q1" value="a"> a) ~4,800 km</label>
+                    <label><input type="radio" name="q1" value="b"> b) ~6,200 km</label>
+                    <label><input type="radio" name="q1" value="c"> c) ~5,500 km</label>
+                    <label><input type="radio" name="q1" value="d"> d) ~7,800 km</label>
                 </div>
             </div>
             
             <div class="question">
-                <p>2. Care este cel mai sudic punct al Americii Centrală?</p>
+                <p>2. Care este cel mai vestic punct al Americii de Nord?</p>
                 <div class="options">
-                    <label><input type="radio" name="q2" value="a"> a) Punta Mariato, Panama</label>
-                    <label><input type="radio" name="q2" value="b"> b) Cabo San Lucas, Mexic</label>
-                    <label><input type="radio" name="q2" value="c"> c) Isla del Coco, Costa Rica</label>
-                    <label><input type="radio" name="q2" value="d"> d) Punta Sur, Cozumel</label>
+                    <label><input type="radio" name="q2" value="a"> a) Capul Dejnev, Rusia</label>
+                    <label><input type="radio" name="q2" value="b"> b) Insula Attu, Alaska</label>
+                    <label><input type="radio" name="q2" value="c"> c) Capul Prince of Wales, Alaska</label>
+                    <label><input type="radio" name="q2" value="d"> d) Capul Alava, Alaska</label>
                 </div>
             </div>
             
             <div class="question">
-                <p>3. Care este cel mai vestic punct al continentului nord-american?</p>
+                <p>3. Care este distanța dintre Capul Prince of Wales (cel mai vestic punct continental) și Capul St. Charles (cel mai estic punct continental)?</p>
                 <div class="options">
-                    <label><input type="radio" name="q3" value="a"> a) Capul Dejnev, Rusia</label>
-                    <label><input type="radio" name="q3" value="b"> b) Insula Attu, Alaska</label>
-                    <label><input type="radio" name="q3" value="c"> c) Capul Prince of Wales, Alaska</label>
-                    <label><input type="radio" name="q3" value="d"> d) Capul Alava, Alaska</label>
+                    <label><input type="radio" name="q3" value="a"> a) ~5,300 km</label>
+                    <label><input type="radio" name="q3" value="b"> b) ~6,800 km</label>
+                    <label><input type="radio" name="q3" value="c"> c) ~4,100 km</label>
+                    <label><input type="radio" name="q3" value="d"> d) ~7,500 km</label>
                 </div>
             </div>
             
@@ -137,8 +161,33 @@
                 </div>
             </div>
             
+            <div class="question">
+                <p>5. Care este cel mai sudic punct al Americii Centrală?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="a"> a) Punta Mariato, Panama</label>
+                    <label><input type="radio" name="q5" value="b"> b) Cabo San Lucas, Mexic</label>
+                    <label><input type="radio" name="q5" value="c"> c) Isla del Coco, Costa Rica</label>
+                    <label><input type="radio" name="q5" value="d"> d) Punta Sur, Cozumel</label>
+                </div>
+            </div>
+            
+            <div class="question">
+                <p>6. Care dintre următoarele linii imaginare importante trec prin America de Nord? (scrieți răspunsurile separate prin virgulă)</p>
+                <input type="text" class="text-answer" name="q6" placeholder="Exemplu: ecuatorul, tropicul racului">
+            </div>
+            
             <button onclick="checkQuiz1()">Verifică Răspunsurile</button>
             <div id="result1"></div>
+            
+            <div id="answers1" class="answer-key">
+                <h3>Răspunsuri corecte:</h3>
+                <p>1. b) ~6,200 km</p>
+                <p>2. a) Capul Dejnev, Rusia</p>
+                <p>3. a) ~5,300 km</p>
+                <p>4. a) Denali (McKinley)</p>
+                <p>5. a) Punta Mariato, Panama</p>
+                <p>6. tropicul racului, cercul polar de nord</p>
+            </div>
         </div>
     </div>
     
@@ -146,38 +195,20 @@
         <div class="quiz-container">
             <h2>Puncte Extreme - America de Sud</h2>
             
+            <img src="https://i.ibb.co/7YVK5z1/geography-quiz.png" alt="Harta Americilor" class="map-image" title="Harta cu punctele extreme ale Americilor">
+            
             <div class="question">
-                <p>1. Care este cel mai nordic punct al Americii de Sud?</p>
+                <p>1. Care este distanța aproximativă dintre Punta Gallinas (cel mai nordic punct) și Capul Horn (cel mai sudic punct) al Americii de Sud?</p>
                 <div class="options">
-                    <label><input type="radio" name="q5" value="a"> a) Punta Gallinas, Columbia</label>
-                    <label><input type="radio" name="q5" value="b"> b) Insula Marajó, Brazilia</label>
-                    <label><input type="radio" name="q5" value="c"> c) Capul San Roque, Brazilia</label>
-                    <label><input type="radio" name="q5" value="d"> d) Aruba (insulă olandeză)</label>
+                    <label><input type="radio" name="q7" value="a"> a) ~6,400 km</label>
+                    <label><input type="radio" name="q7" value="b"> b) ~7,600 km</label>
+                    <label><input type="radio" name="q7" value="c"> c) ~5,200 km</label>
+                    <label><input type="radio" name="q7" value="d"> d) ~8,300 km</label>
                 </div>
             </div>
             
             <div class="question">
-                <p>2. Care este cel mai sudic punct al continentului sud-american?</p>
-                <div class="options">
-                    <label><input type="radio" name="q6" value="a"> a) Capul Horn</label>
-                    <label><input type="radio" name="q6" value="b"> b) Insula Diego Ramirez</label>
-                    <label><input type="radio" name="q6" value="c"> c) Capul Froward</label>
-                    <label><input type="radio" name="q6" value="d"> d) Ushuaia, Argentina</label>
-                </div>
-            </div>
-            
-            <div class="question">
-                <p>3. Care este cel mai înalt vârf din America de Sud?</p>
-                <div class="options">
-                    <label><input type="radio" name="q7" value="a"> a) Aconcagua</label>
-                    <label><input type="radio" name="q7" value="b"> b) Chimborazo</label>
-                    <label><input type="radio" name="q7" value="c"> c) Huascarán</label>
-                    <label><input type="radio" name="q7" value="d"> d) Monte Pissis</label>
-                </div>
-            </div>
-            
-            <div class="question">
-                <p>4. Care este cel mai estic punct al Americii de Sud?</p>
+                <p>2. Care este cel mai estic punct al Americii de Sud?</p>
                 <div class="options">
                     <label><input type="radio" name="q8" value="a"> a) Ponta do Seixas, Brazilia</label>
                     <label><input type="radio" name="q8" value="b"> b) Recife, Brazilia</label>
@@ -186,8 +217,53 @@
                 </div>
             </div>
             
+            <div class="question">
+                <p>3. Care este distanța dintre Punta Pariñas (cel mai vestic punct) și Ponta do Seixas (cel mai estic punct)?</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="a"> a) ~4,200 km</label>
+                    <label><input type="radio" name="q9" value="b"> b) ~3,600 km</label>
+                    <label><input type="radio" name="q9" value="c"> c) ~5,100 km</label>
+                    <label><input type="radio" name="q9" value="d"> d) ~2,800 km</label>
+                </div>
+            </div>
+            
+            <div class="question">
+                <p>4. Care este cel mai înalt vârf din America de Sud?</p>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="a"> a) Aconcagua</label>
+                    <label><input type="radio" name="q10" value="b"> b) Chimborazo</label>
+                    <label><input type="radio" name="q10" value="c"> c) Huascarán</label>
+                    <label><input type="radio" name="q10" value="d"> d) Monte Pissis</label>
+                </div>
+            </div>
+            
+            <div class="question">
+                <p>5. Care este cel mai sudic oraș din lume, situat în America de Sud?</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="a"> a) Ushuaia, Argentina</label>
+                    <label><input type="radio" name="q11" value="b"> b) Punta Arenas, Chile</label>
+                    <label><input type="radio" name="q11" value="c"> c) Puerto Williams, Chile</label>
+                    <label><input type="radio" name="q11" value="d"> d) Río Grande, Argentina</label>
+                </div>
+            </div>
+            
+            <div class="question">
+                <p>6. Care dintre următoarele linii imaginare importante trec prin America de Sud? (scrieți răspunsurile separate prin virgulă)</p>
+                <input type="text" class="text-answer" name="q12" placeholder="Exemplu: ecuatorul, tropicul capricornului">
+            </div>
+            
             <button onclick="checkQuiz2()">Verifică Răspunsurile</button>
             <div id="result2"></div>
+            
+            <div id="answers2" class="answer-key">
+                <h3>Răspunsuri corecte:</h3>
+                <p>1. b) ~7,600 km</p>
+                <p>2. a) Ponta do Seixas, Brazilia</p>
+                <p>3. b) ~3,600 km</p>
+                <p>4. a) Aconcagua</p>
+                <p>5. c) Puerto Williams, Chile</p>
+                <p>6. ecuatorul, tropicul capricornului</p>
+            </div>
         </div>
     </div>
 
@@ -217,40 +293,61 @@
         
         function checkQuiz1() {
             const answers = {
-                q1: "d", // Capul Morris Jesup, Groenlanda
-                q2: "a", // Punta Mariato, Panama
-                q3: "a", // Capul Dejnev, Rusia
-                q4: "a"  // Denali (McKinley)
+                q1: "b", // ~6,200 km
+                q2: "a", // Capul Dejnev, Rusia
+                q3: "a", // ~5,300 km
+                q4: "a", // Denali (McKinley)
+                q5: "a"  // Punta Mariato, Panama
             };
             
             let score = 0;
-            let totalQuestions = Object.keys(answers).length;
+            let totalQuestions = 6; // 5 multiple choice + 1 text
             
+            // Check multiple choice questions
             for (let question in answers) {
                 const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
                 if (selectedOption && selectedOption.value === answers[question]) {
                     score++;
                 }
             }
+            
+            // Check text question (q6)
+            const textAnswer = document.querySelector('input[name="q6"]').value.toLowerCase();
+            const correctLines = ['tropicul racului', 'cercul polar de nord'];
+            let correctTextAnswers = 0;
+            
+            correctLines.forEach(line => {
+                if (textAnswer.includes(line.toLowerCase())) {
+                    correctTextAnswers++;
+                }
+            });
+            
+            // Add partial score for text question
+            score += correctTextAnswers / correctLines.length;
             
             const percentage = (score / totalQuestions) * 100;
             const resultElement = document.getElementById('result1');
             
-            resultElement.textContent = `Ai obținut ${score} din ${totalQuestions} răspunsuri corecte (${percentage.toFixed(0)}%)`;
+            resultElement.textContent = `Ai obținut ${Math.round(score)} din ${totalQuestions} răspunsuri corecte (${percentage.toFixed(0)}%)`;
             resultElement.className = percentage >= 50 ? 'correct' : 'incorrect';
+            
+            // Show answer key
+            document.getElementById('answers1').style.display = 'block';
         }
         
         function checkQuiz2() {
             const answers = {
-                q5: "a", // Punta Gallinas, Columbia
-                q6: "a", // Capul Horn
-                q7: "a", // Aconcagua
-                q8: "a"  // Ponta do Seixas, Brazilia
+                q7: "b", // ~7,600 km
+                q8: "a", // Ponta do Seixas, Brazilia
+                q9: "b", // ~3,600 km
+                q10: "a", // Aconcagua
+                q11: "c"  // Puerto Williams, Chile
             };
             
             let score = 0;
-            let totalQuestions = Object.keys(answers).length;
+            let totalQuestions = 6; // 5 multiple choice + 1 text
             
+            // Check multiple choice questions
             for (let question in answers) {
                 const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
                 if (selectedOption && selectedOption.value === answers[question]) {
@@ -258,11 +355,28 @@
                 }
             }
             
+            // Check text question (q12)
+            const textAnswer = document.querySelector('input[name="q12"]').value.toLowerCase();
+            const correctLines = ['ecuatorul', 'tropicul capricornului'];
+            let correctTextAnswers = 0;
+            
+            correctLines.forEach(line => {
+                if (textAnswer.includes(line.toLowerCase())) {
+                    correctTextAnswers++;
+                }
+            });
+            
+            // Add partial score for text question
+            score += correctTextAnswers / correctLines.length;
+            
             const percentage = (score / totalQuestions) * 100;
             const resultElement = document.getElementById('result2');
             
-            resultElement.textContent = `Ai obținut ${score} din ${totalQuestions} răspunsuri corecte (${percentage.toFixed(0)}%)`;
+            resultElement.textContent = `Ai obținut ${Math.round(score)} din ${totalQuestions} răspunsuri corecte (${percentage.toFixed(0)}%)`;
             resultElement.className = percentage >= 50 ? 'correct' : 'incorrect';
+            
+            // Show answer key
+            document.getElementById('answers2').style.display = 'block';
         }
     </script>
 </body>
