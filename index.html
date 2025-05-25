@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Capitalele Americii de Sud</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .quiz-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .country {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input {
+            padding: 8px;
+            width: 250px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .correct {
+            color: #27ae60;
+        }
+        .incorrect {
+            color: #e74c3c;
+        }
+        .score {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .hint {
+            font-size: 12px;
+            color: #7f8c8d;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Capitalele Americii de Sud</h1>
+    <div class="quiz-container">
+        <p>Scrie capitala pentru fiecare țară:</p>
+        
+        <div id="quiz-items">
+            <!-- Întrebările vor apărea aici -->
+        </div>
+        
+        <button id="check-answers">Verifică răspunsurile</button>
+        <button id="new-game">Joc nou</button>
+        <button id="show-hints">Arată indicii</button>
+        
+        <div class="score">Scor: <span id="score">0</span>/<span id="total">0</span></div>
+    </div>
+
+    <script>
+        const countries = [
+            {name: "Argentina", capital: "Buenos Aires"},
+            {name: "Bolivia", capital: "Sucre"},
+            {name: "Brazilia", capital: "Brasilia"},
+            {name: "Chile", capital: "Santiago"},
+            {name: "Columbia", capital: "Bogota"},
+            {name: "Ecuador", capital: "Quito"},
+            {name: "Guyana", capital: "Georgetown"},
+            {name: "Paraguay", capital: "Asuncion"},
+            {name: "Peru", capital: "Lima"},
+            {name: "Surinam", capital: "Paramaribo"},
+            {name: "Uruguay", capital: "Montevideo"},
+            {name: "Venezuela", capital: "Caracas"},
+            {name: "Guiana Franceză", capital: "Cayenne"}
+        ];
+
+        const quizItems = document.getElementById('quiz-items');
+        const checkButton = document.getElementById('check-answers');
+        const newGameButton = document.getElementById('new-game');
+        const showHintsButton = document.getElementById('show-hints');
+        const scoreElement = document.getElementById('score');
+        const totalElement = document.getElementById('total');
+
+        function createQuiz() {
+            quizItems.innerHTML = '';
+            
+            // Amestecă țările
+            const shuffledCountries = [...countries].sort(() => Math.random() - 0.5);
+            
+            shuffledCountries.forEach(country => {
+                const container = document.createElement('div');
+                container.className = 'quiz-item';
+                
+                const countryElement = document.createElement('div');
+                countryElement.className = 'country';
+                countryElement.textContent = country.name;
+                
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.dataset.capital = country.capital.toLowerCase();
+                input.dataset.original = country.capital;
+                
+                const hint = document.createElement('span');
+                hint.className = 'hint';
+                hint.textContent = '?';
+                hint.title = 'Arată primul caracter';
+                hint.style.display = 'none';
+                hint.addEventListener('click', function() {
+                    if (!input.value) {
+                        input.value = country.capital.charAt(0);
+                        input.focus();
+                    }
+                });
+                
+                container.appendChild(countryElement);
+                container.appendChild(input);
+                container.appendChild(hint);
+                quizItems.appendChild(container);
+            });
+            
+            totalElement.textContent = shuffledCountries.length;
+            scoreElement.textContent = '0';
+        }
+
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('.quiz-item input');
+            let score = 0;
+            
+            inputs.forEach(input => {
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswer = input.dataset.capital;
+                
+                if (userAnswer === correctAnswer) {
+                    input.style.borderColor = '#27ae60';
+                    score++;
+                } else {
+                    input.style.borderColor = '#e74c3c';
+                    input.value = input.dataset.original;
+                }
+            });
+            
+            scoreElement.textContent = score;
+        }
+
+        function toggleHints() {
+            const hints = document.querySelectorAll('.hint');
+            const isVisible = hints[0].style.display === 'inline-block';
+            
+            hints.forEach(hint => {
+                hint.style.display = isVisible ? 'none' : 'inline-block';
+            });
+            
+            showHintsButton.textContent = isVisible ? 'Arată indicii' : 'Ascunde indicii';
+        }
+
+        checkButton.addEventListener('click', checkAnswers);
+        newGameButton.addEventListener('click', createQuiz);
+        showHintsButton.addEventListener('click', toggleHints);
+
+        // Inițializează testul
+        createQuiz();
+    </script>
+</body>
+</html>
