@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Capitalele Americii de Sud</title>
+    <title>Test Capitalele Americii</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,16 +46,6 @@
         button:hover {
             background-color: #2980b9;
         }
-        .result {
-            margin-top: 20px;
-            font-weight: bold;
-        }
-        .correct {
-            color: #27ae60;
-        }
-        .incorrect {
-            color: #e74c3c;
-        }
         .score {
             margin-top: 20px;
             font-size: 18px;
@@ -65,10 +55,29 @@
             color: #7f8c8d;
             cursor: pointer;
             margin-left: 10px;
+            display: inline-block;
+        }
+        input.correct {
+            border-color: #27ae60;
+        }
+        input.incorrect {
+            border-color: #e74c3c;
+        }
+        input[title]:hover::after {
+            content: attr(title);
+            position: absolute;
+            background-color: #333;
+            color: white;
+            padding: 5px;
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+            z-index: 1;
+            font-size: 14px;
         }
     </style>
 </head>
-    <!-- Google tag (gtag.js) -->
+     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KFVQGZQ34V"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -78,7 +87,7 @@
   gtag('config', 'G-KFVQGZQ34V');
 </script>
 <body>
-    <h1>Test Capitalele Americii de Sud</h1>
+    <h1>Test Capitalele Americii</h1>
     <div class="quiz-container">
         <p>Scrie capitala pentru fiecare țară:</p>
         
@@ -97,17 +106,20 @@
         const countries = [
             {name: "Argentina", capital: "Buenos Aires"},
             {name: "Bolivia", capital: "Sucre"},
-            {name: "Brazilia", capital: "Brasilia"},
+            {name: "Brazil", capital: "Brasilia"},
+            {name: "Canada", capital: "Ottawa"},
             {name: "Chile", capital: "Santiago"},
             {name: "Columbia", capital: "Bogota"},
             {name: "Ecuador", capital: "Quito"},
+            {name: "Guiana Franceză", capital: "Cayenne"},
             {name: "Guyana", capital: "Georgetown"},
+            {name: "Mexic", capital: "Ciudad de Mexico"},
             {name: "Paraguay", capital: "Asuncion"},
             {name: "Peru", capital: "Lima"},
+            {name: "Statele Unite", capital: "Washington DC"},
             {name: "Surinam", capital: "Paramaribo"},
             {name: "Uruguay", capital: "Montevideo"},
-            {name: "Venezuela", capital: "Caracas"},
-            {name: "Guiana Franceză", capital: "Cayenne"}
+            {name: "Venezuela", capital: "Caracas"}
         ];
 
         const quizItems = document.getElementById('quiz-items');
@@ -117,10 +129,14 @@
         const scoreElement = document.getElementById('score');
         const totalElement = document.getElementById('total');
 
+        function normalizeString(str) {
+            return str.toLowerCase()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                .replace(/\s+/g, ' ').trim();
+        }
+
         function createQuiz() {
             quizItems.innerHTML = '';
-            
-            // Amestecă țările
             const shuffledCountries = [...countries].sort(() => Math.random() - 0.5);
             
             shuffledCountries.forEach(country => {
@@ -133,15 +149,14 @@
                 
                 const input = document.createElement('input');
                 input.type = 'text';
-                input.dataset.capital = country.capital.toLowerCase();
-                input.dataset.original = country.capital;
+                input.dataset.correct = country.capital;
                 
                 const hint = document.createElement('span');
                 hint.className = 'hint';
                 hint.textContent = '?';
                 hint.title = 'Arată primul caracter';
                 hint.style.display = 'none';
-                hint.addEventListener('click', function() {
+                hint.addEventListener('click', () => {
                     if (!input.value) {
                         input.value = country.capital.charAt(0);
                         input.focus();
@@ -163,15 +178,15 @@
             let score = 0;
             
             inputs.forEach(input => {
-                const userAnswer = input.value.trim().toLowerCase();
-                const correctAnswer = input.dataset.capital;
+                const userAnswer = normalizeString(input.value);
+                const correctAnswer = normalizeString(input.dataset.correct);
                 
                 if (userAnswer === correctAnswer) {
-                    input.style.borderColor = '#27ae60';
+                    input.className = 'correct';
                     score++;
                 } else {
-                    input.style.borderColor = '#e74c3c';
-                    input.value = input.dataset.original;
+                    input.className = 'incorrect';
+                    input.title = `Răspuns corect: ${input.dataset.correct}`;
                 }
             });
             
@@ -180,20 +195,19 @@
 
         function toggleHints() {
             const hints = document.querySelectorAll('.hint');
-            const isVisible = hints[0].style.display === 'inline-block';
+            const isVisible = hints[0].style.display === 'none';
             
             hints.forEach(hint => {
-                hint.style.display = isVisible ? 'none' : 'inline-block';
+                hint.style.display = isVisible ? 'inline-block' : 'none';
             });
             
-            showHintsButton.textContent = isVisible ? 'Arată indicii' : 'Ascunde indicii';
+            showHintsButton.textContent = isVisible ? 'Ascunde indicii' : 'Arată indicii';
         }
 
         checkButton.addEventListener('click', checkAnswers);
         newGameButton.addEventListener('click', createQuiz);
         showHintsButton.addEventListener('click', toggleHints);
 
-        // Inițializează testul
         createQuiz();
     </script>
 </body>
